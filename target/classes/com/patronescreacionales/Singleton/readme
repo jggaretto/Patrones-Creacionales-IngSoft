@@ -1,0 +1,83 @@
+Patrón de Diseño: Singleton
+
+Este repositorio contiene la implementación y el análisis del patrón de diseño Singleton, enfocado en la creación de una configuración inmutable y compartida para una aplicación ("Campus virtual").
+
+1. Diagrama UML
+
+A continuación se detalla la estructura de la clase anidada Configuracion, la cual actúa como nuestro Singleton.
+
+(Reemplaza captura-uml.png con el nombre real de tu archivo de imagen para que se visualice aquí)
+
+
+Representación en texto del UML:
+
++-------------------------------------------------+
+|                  Configuracion                  |
++-------------------------------------------------+
+| - INSTANCIA: Configuracion {readOnly, static}   |
+| - nombreAplicacion: String {readOnly}           |
++-------------------------------------------------+
+| - Configuracion()                               |
+| + getInstancia(): Configuracion {static}        |
+| + getNombreAplicacion(): String                 |
++-------------------------------------------------+
+
+
+2. Código Fuente
+
+El código utiliza una estrategia de Inicialización Temprana (Eager Initialization) en Java, ideal para configuraciones estáticas.
+
+/** Singleton: una configuracion inmutable compartida por la aplicacion. */
+public class SingletonDemo {
+    public static final class Configuracion {
+        // La JVM inicializa esta instancia una sola vez al inicializar la clase.
+        private static final Configuracion INSTANCIA = new Configuracion();
+        private final String nombreAplicacion = "Campus virtual";
+
+        private Configuracion() { }
+
+        public static Configuracion getInstancia() {
+            return INSTANCIA;
+        }
+
+        public String getNombreAplicacion() {
+            return nombreAplicacion;
+        }
+    }
+
+    public static void main(String[] args) {
+        Configuracion primera = Configuracion.getInstancia();
+        Configuracion segunda = Configuracion.getInstancia();
+        
+        assert primera == segunda : "Se crearon dos instancias";
+        assert primera.getNombreAplicacion().equals("Campus virtual");
+        
+        System.out.println("Aplicacion: " + primera.getNombreAplicacion());
+        System.out.println("Misma instancia: " + (primera == segunda));
+    }
+}
+
+
+3. Explicación
+
+El patrón Singleton garantiza que una clase tenga una única instancia en todo el ciclo de vida de la aplicación y proporciona un punto de acceso global a ella.
+
+En este ejemplo específico, la clase Configuracion garantiza que toda la aplicación ("Campus virtual") lea los mismos datos desde un único lugar en memoria. A diferencia de la "inicialización diferida" (Lazy), aquí se utiliza inicialización temprana (Eager). La instancia se crea en el momento exacto en que la Máquina Virtual de Java (JVM) carga la clase en memoria, lo que evita problemas de concurrencia.
+
+4. Principios de Diseño Aplicados
+
+Thread-Safety (Hilo Seguro) por diseño: Al instanciar directamente en la declaración estática (private static final), la JVM garantiza que la creación sea atómica y segura para entornos multihilo. No hace falta usar bloques synchronized.
+
+Inmutabilidad: El uso de modificadores final en la clase, en la instancia y en el atributo (nombreAplicacion) protege la integridad de los datos. El estado del Singleton no puede ser alterado una vez inicializado.
+
+Ocultamiento de información: El constructor privado private Configuracion() impide cualquier instanciación externa accidental mediante el operador new.
+
+5. Análisis respecto a los Principios SOLID
+
+El patrón Singleton es conocido por tener fricciones con algunos principios SOLID. En esta implementación concreta, el análisis es el siguiente:
+
+SRP (Principio de Responsabilidad Única): No lo cumple. La clase Configuracion asume dos responsabilidades: controlar su propio ciclo de vida (instanciación única) y mantener los datos de configuración de la aplicación.
+
+OCP (Principio de Abierto/Cerrado): La clase está estrictamente cerrada a la extensión. Al declararse como public static final class, Java impide la herencia directa. No se puede extender sin modificar el código.
+
+DIP (Principio de Inversión de Dependencias): No lo cumple. El código cliente (el main) depende directamente de una implementación concreta (Configuracion.getInstancia()) en lugar de depender de una abstracción (como una interfaz IConfiguracion). Esto genera acoplamiento fuerte y puede dificultar el testing (creación de mocks).
