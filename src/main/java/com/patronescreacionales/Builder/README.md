@@ -13,7 +13,7 @@ Builder/
 └── MainBuilderDemo.java          # CLIENTE: demo para ejecutar y exponer
 ```
 
-Paquete: `com.patronescreacionales.Builder`
+Paquete: `com.patronescreacionales.Builder.src`
 
 ## Requisitos
 
@@ -40,24 +40,24 @@ Desde la raiz del proyecto:
 
 ```powershell
 # 1. Compilar
-javac -encoding UTF-8 -d out src/main/java/com/patronescreacionales/Builder/*.java
+javac -encoding UTF-8 -d out src/main/java/com/patronescreacionales/Builder/src/*.java
 
 # 2. Ejecutar
-java -cp out com.patronescreacionales.Builder.MainBuilderDemo
+java -cp out com.patronescreacionales.Builder.src.MainBuilderDemo
 ```
 
 En Linux / Mac:
 
 ```bash
-javac -encoding UTF-8 -d out src/main/java/com/patronescreacionales/Builder/*.java
-java -cp out com.patronescreacionales.Builder.MainBuilderDemo
+javac -encoding UTF-8 -d out src/main/java/com/patronescreacionales/Builder/src/*.java
+java -cp out com.patronescreacionales.Builder.src.MainBuilderDemo
 ```
 
 ### Opcion 3: Con Maven
 
 ```powershell
 mvn compile
-mvn exec:java -Dexec.mainClass="com.patronescreacionales.Builder.MainBuilderDemo"
+mvn exec:java -Dexec.mainClass="com.patronescreacionales.Builder.src.MainBuilderDemo"
 ```
 
 > Nota: si `mvn` no esta instalado, usa la Opcion 1 o 2.

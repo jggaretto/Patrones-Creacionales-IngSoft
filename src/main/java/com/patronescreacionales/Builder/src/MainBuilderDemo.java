@@ -9,7 +9,7 @@ package com.patronescreacionales.Builder.src;
  *  3. Reutilización del mismo Builder para varios productos.
  *
  * Para ejecutar:
- *   mvn compile exec:java -Dexec.mainClass="com.patronescreacionales.Builder.MainBuilderDemo"
+ *   mvn compile exec:java -Dexec.mainClass="com.patronescreacionales.Builder.src.MainBuilderDemo"
  *   o directamente con el botón Run de tu IDE.
  */
 public class MainBuilderDemo {
