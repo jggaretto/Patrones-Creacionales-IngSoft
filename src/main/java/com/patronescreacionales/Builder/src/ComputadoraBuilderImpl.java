@@ -1,4 +1,4 @@
-package com.patronescreacionales.Builder;
+package com.patronescreacionales.Builder.src;
 
 /**
  * CONCRETE BUILDER - Implementacion unica del Builder.

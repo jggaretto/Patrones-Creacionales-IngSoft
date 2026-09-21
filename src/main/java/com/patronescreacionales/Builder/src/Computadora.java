@@ -1,4 +1,4 @@
-package com.patronescreacionales.Builder;
+package com.patronescreacionales.Builder.src;
 
 /**
  * PRODUCTO - Representa el objeto complejo que queremos construir.
