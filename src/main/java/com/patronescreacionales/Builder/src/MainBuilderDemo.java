@@ -1,4 +1,4 @@
-package com.patronescreacionales.Builder;
+package com.patronescreacionales.Builder.src;
 
 /**
  * CLIENTE / DEMO - Punto de entrada para la exposición.
