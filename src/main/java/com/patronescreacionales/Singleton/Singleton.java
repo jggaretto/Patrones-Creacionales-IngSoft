@@ -1,4 +1,5 @@
-/** Singleton: una configuracion inmutable compartida por la aplicacion. */
+package com.patronescreacionales.Singleton;
+/**Singleton: una configuracion inmutable compartida por la aplicacion.*/
 public class Singleton {
     public static final class Configuracion {
         // La JVM inicializa esta instancia una sola vez al inicializar la clase.
